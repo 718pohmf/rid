@@ -1,0 +1,196 @@
+{% extends 'webapp/base.html' %}
+{% block body %}
+
+{% load static %}
+
+<html>
+<head>
+<style>
+body {font-family: "Lato", sans-serif;}
+
+/* Style the tab */
+div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+</style>
+</head>
+<body>
+
+<p>In this example, we use JavaScript to "click" on the London button, to open the tab on page load.</p>
+<!-- Container (Portfolio Section) -->
+<div class="w3-content w3-container w3-padding-64" id="portfolio">
+  <h3 class="w3-center">Recycling vendors</h3>
+  <p class="w3-center"><em>Here are some of the partners in waste recycling.<br> Click on the images to make them bigger</em></p><br>
+
+  <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
+  <div class="w3-row-padding w3-center">
+    <div class="w3-col m3">
+      <img src="{% static 'webapp/images/sembcorp.jpg' %}" align="bottom" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Baling and exporting of plastic
+
+">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="{% static 'webapp/images/singnergy.png' %}" style="width:80% height:10%" onclick="onClick(this)" class="w3-hover-opacity" alt="Dries food and beverage sludge
+">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="{% static 'webapp/images/vrm.PNG' %}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Converts food waste into liquid formulation containing key biological elements critical for soil health and disease management
+
+">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="{% static 'webapp/images/haowei.PNG' %}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Manufacture and recycling via extrusion of polystyrene from food packaging
+">
+    </div>
+  </div>
+
+  <div class="w3-row-padding w3-center w3-section">
+    <div class="w3-col m3">
+      <img src="{% static 'webapp/images/chiang.PNG' %}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Regrinding of plastic
+">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="{% static 'webapp/images/ecowiz.PNG' %}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Converts solid food waste materials into liquid nutrient or reusable water for watering plants/washing
+">
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal for full size images on click-->
+<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+  <span class="w3-button w3-large w3-white w3-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
+  <div class="w3-modal-content w3-animate-zoom w3-center w3-white w3-padding-64">
+    <img id="img01" class="w3-image">
+    <p id="caption" class="w3-white w3-large"></p>
+  </div>
+</div>
+
+
+<div class="w3-content w3-container w3-padding-64" id="contact">
+  <h3 class="w3-left">WHERE I WORK</h3>
+
+
+  <div class="w3-row w3-padding-32 w3-section ">
+
+    <div class="w3-col m8 w3-panel">
+      <div class="w3-large w3-margin-bottom">
+        <i class="fa fa-map-marker fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Singapore<br>
+        <i class="fa fa-phone fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Phone: +65 97251570<br>
+        <i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Email: a0129512@u.nus.edu<br>
+      </div>
+      <p>Swing by for a cup of <i class="fa fa-coffee"></i>, or leave me a note:</p>
+      <form action="/action_page.php" target="_blank">
+        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+          <div class="w3-half">
+            <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+          </div>
+          <div class="w3-half">
+            <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+          </div>
+        </div>
+        <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
+        <button class="w3-button w3-black w3-right w3-section" type="submit">
+          <i class="fa fa-paper-plane"></i> SEND MESSAGE
+        </button>
+      </form>
+    </div>
+
+
+  </div>
+  <div class="w3-col m4 w3-container">
+    <!-- Add Google Maps -->
+    <img src="{% static 'webapp/images/map.PNG' %}" style="width:100% height:50px" onclick="onClick(this)" class="w3-hover-opacity">
+  </div>
+</div>
+
+</body>
+</html>
+
+
+<script>
+function myMap()
+{
+  myCenter=new google.maps.LatLng(41.878114, -87.629798);
+  var mapOptions= {
+    center:myCenter,
+    zoom:12, scrollwheel: false, draggable: false,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  var map=new google.maps.Map(document.getElementById("googleMap"),mapOptions);
+
+  var marker = new google.maps.Marker({
+    position: myCenter,
+  });
+  marker.setMap(map);
+}
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+// Change style of navbar on scroll
+window.onscroll = function() {myFunction()};
+function myFunction() {
+    var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        navbar.className = "w3-bar" + " w3-card-2" + " w3-animate-top" + " w3-white";
+    } else {
+        navbar.className = navbar.className.replace(" w3-card-2 w3-animate-top w3-white", "");
+    }
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function toggleFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBa5JJiyRwXsHYacd6PsXwCVl_25tOZwS8&callback=myMap"></script>
+
+
+{% endblock %}
